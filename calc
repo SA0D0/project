@@ -1,85 +1,67 @@
-# Import the necessary modules
-from tkinter import *
+import tkinter as tk
 
-# Create the main window
-window = Tk()
-window.title("Converter and Calculator")
+# Create the window
+window = tk.Tk()
+window.title("Calculator")
 
-# Create the entry field for the user to enter the number
-entry_field = Entry(window, width=10)
-entry_field.pack()
+# Create the labels and entries
+label1 = tk.Label(window, text="Number 1:")
+label1.pack()
+entry1 = tk.Entry(window)
+entry1.pack()
 
-# Create the label for the unit conversion
-unit_label = Label(window, text="Unit Conversion:")
-unit_label.pack()
+label2 = tk.Label(window, text="Number 2:")
+label2.pack()
+entry2 = tk.Entry(window)
+entry2.pack()
 
-# Create the drop-down menu for the units
-units = ["Metric", "Imperial"]
-unit_menu = OptionMenu(window, units)
-unit_menu.pack()
+# Create the buttons
+button1 = tk.Button(window, text="Add", command=lambda: add())
+button1.pack()
+button2 = tk.Button(window, text="Subtract", command=lambda: subtract())
+button2.pack()
+button3 = tk.Button(window, text="Multiply", command=lambda: multiply())
+button3.pack()
+button4 = tk.Button(window, text="Divide", command=lambda: divide())
+button4.pack()
 
-# Create the label for the calculation
-calc_label = Label(window, text="Calculation:")
-calc_label.pack()
+# Create the "Clear" button
+button5 = tk.Button(window, text="Clear", command=lambda: clear())
+button5.pack()
 
-# Create the drop-down menu for the calculations
-calcs = ["Addition", "Subtraction", "Multiplication", "Division"]
-calc_menu = OptionMenu(window, calcs)
-calc_menu.pack()
+# Create the function to perform the calculation
+def add():
+    num1 = float(entry1.get())
+    num2 = float(entry2.get())
+    result = num1 + num2
+    label3 = tk.Label(window, text=result)
+    label3.pack()
 
-# Create the button to convert the number
-convert_btn = Button(window, text="Convert", command=convert_number)
-convert_btn.pack()
+def subtract():
+    num1 = float(entry1.get())
+    num2 = float(entry2.get())
+    result = num1 - num2
+    label3 = tk.Label(window, text=result)
+    label3.pack()
 
-# Create the button to calculate the number
-calc_btn = Button(window, text="Calculate", command=calculate_number)
-calc_btn.pack()
+def multiply():
+    num1 = float(entry1.get())
+    num2 = float(entry2.get())
+    result = num1 * num2
+    label3 = tk.Label(window, text=result)
+    label3.pack()
 
-# Create the label to display the converted number
-converted_label = Label(window, text="")
-converted_label.pack()
+def divide():
+    num1 = float(entry1.get())
+    num2 = float(entry2.get())
+    result = num1 / num2
+    label3 = tk.Label(window, text=result)
+    label3.pack()
 
-# Create the label to display the calculated number
-calculated_label = Label(window, text="")
-calculated_label.pack()
+# Create the function to clear the entry fields
+def clear():
+    entry1.delete(0, 'end')
+    entry2.delete(0, 'end')
 
-# Define the function to convert the number
-def convert_number():
-    # Get the number from the entry field
-    number = float(entry_field.get())
-
-    # Get the unit from the drop-down menu
-    unit = unit_menu.get()
-
-    # Convert the number to the selected unit
-    if unit == "Metric":
-        converted_number = number * 100
-    else:
-        converted_number = number / 100
-
-    # Display the converted number
-    converted_label.config(text=f"{number} {unit} is equal to {converted_number} {unit}")
-
-# Define the function to calculate the number
-def calculate_number():
-    # Get the number from the entry field
-    number = float(entry_field.get())
-
-    # Get the calculation from the drop-down menu
-    calc = calc_menu.get()
-
-    # Calculate the number
-    if calc == "Addition":
-        calculated_number = number + number
-    elif calc == "Subtraction":
-        calculated_number = number - number
-    elif calc == "Multiplication":
-        calculated_number = number * number
-    else:
-        calculated_number = number / number
-
-    # Display the calculated number
-    calculated_label.config(text=f"{number} {calc} {number} is equal to {calculated_number}")
-
-# Run the main loop
+# Start the main loop
 window.mainloop()
