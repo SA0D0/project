@@ -1,0 +1,85 @@
+# Import the necessary modules
+from tkinter import *
+
+# Create the main window
+window = Tk()
+window.title("Converter and Calculator")
+
+# Create the entry field for the user to enter the number
+entry_field = Entry(window, width=10)
+entry_field.pack()
+
+# Create the label for the unit conversion
+unit_label = Label(window, text="Unit Conversion:")
+unit_label.pack()
+
+# Create the drop-down menu for the units
+units = ["Metric", "Imperial"]
+unit_menu = OptionMenu(window, units)
+unit_menu.pack()
+
+# Create the label for the calculation
+calc_label = Label(window, text="Calculation:")
+calc_label.pack()
+
+# Create the drop-down menu for the calculations
+calcs = ["Addition", "Subtraction", "Multiplication", "Division"]
+calc_menu = OptionMenu(window, calcs)
+calc_menu.pack()
+
+# Create the button to convert the number
+convert_btn = Button(window, text="Convert", command=convert_number)
+convert_btn.pack()
+
+# Create the button to calculate the number
+calc_btn = Button(window, text="Calculate", command=calculate_number)
+calc_btn.pack()
+
+# Create the label to display the converted number
+converted_label = Label(window, text="")
+converted_label.pack()
+
+# Create the label to display the calculated number
+calculated_label = Label(window, text="")
+calculated_label.pack()
+
+# Define the function to convert the number
+def convert_number():
+    # Get the number from the entry field
+    number = float(entry_field.get())
+
+    # Get the unit from the drop-down menu
+    unit = unit_menu.get()
+
+    # Convert the number to the selected unit
+    if unit == "Metric":
+        converted_number = number * 100
+    else:
+        converted_number = number / 100
+
+    # Display the converted number
+    converted_label.config(text=f"{number} {unit} is equal to {converted_number} {unit}")
+
+# Define the function to calculate the number
+def calculate_number():
+    # Get the number from the entry field
+    number = float(entry_field.get())
+
+    # Get the calculation from the drop-down menu
+    calc = calc_menu.get()
+
+    # Calculate the number
+    if calc == "Addition":
+        calculated_number = number + number
+    elif calc == "Subtraction":
+        calculated_number = number - number
+    elif calc == "Multiplication":
+        calculated_number = number * number
+    else:
+        calculated_number = number / number
+
+    # Display the calculated number
+    calculated_label.config(text=f"{number} {calc} {number} is equal to {calculated_number}")
+
+# Run the main loop
+window.mainloop()
